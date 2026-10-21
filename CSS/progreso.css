@@ -1,0 +1,284 @@
+/* ==========================
+   CONFIGURACIoN GENERAL
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: #050505 url('../IMG/fondoprogress.png') center / 120% auto fixed no-repeat;
+    color: #fff;
+    margin: 0;
+    padding: 20px;
+    animation: moverFondo 35s ease-in-out infinite alternate;
+}
+
+@keyframes moverFondo {
+    0% {
+        background-position: 40% 45%;
+        background-size: 120% auto;
+    }
+
+    50% {
+        background-position: 60% 55%;
+        background-size: 125% auto;
+    }
+
+    100% {
+        background-position: 45% 50%;
+        background-size: 120% auto;
+    }
+}
+
+#btn-volver {
+  position: absolute;
+  top: 78px;
+  left: 330px;
+  padding: 10px 18px;
+  border: 2px solid white;
+  border-radius: 20px;
+  background: rgba(133, 229, 159, 0.507);
+  color: white;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: 0.2s;
+}
+
+#btn-volver:hover {
+  background: rgba(71, 179, 94, 0.475);
+  transform: translateY(-2px);
+}
+
+#encabezado {
+  text-align: center;
+  padding: 90px 20px 20px;
+  color: white;
+}
+
+#encabezado h1 {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: white;
+  text-shadow: 0 0 8px white, 0 0 18px white;
+}
+
+#encabezado p {
+  margin-top: 15px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: white;
+  text-shadow: 0 0 6px white;
+}
+
+#contenedorProgreso {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px 60px;
+}
+
+.tarjeta-progreso {
+  width: 100%;
+  max-width: 560px;
+  padding: 28px;
+  border: 2px solid white;
+  border-radius: 22px;
+  background: rgba(14, 60, 22, 0.72);
+  box-shadow: 0 0 18px rgba(133, 229, 147, 0.6);
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.cabecera-estudiante {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-bottom: 24px;
+}
+
+.anillo {
+  --pct: 0;
+  flex-shrink: 0;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: conic-gradient(#7dff9b calc(var(--pct) * 1%), rgba(255, 255, 255, 0.18) 0);
+}
+
+.anillo span {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: #1b1040;
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.datos-estudiante h2 { font-size: 24px; margin-bottom: 6px; }
+.datos-estudiante p  { font-size: 14px; opacity: 0.85; }
+
+.lista-niveles {
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+.fila-nivel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  border-left: 6px solid var(--color);
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.fila-nivel:hover { background: rgba(255, 255, 255, 0.16); }
+.fila-nivel.bloqueado { opacity: 0.5; pointer-events: none; }
+.fila-nivel small { display: block; opacity: 0.75; font-size: 12px; }
+.estado { font-weight: 700; white-space: nowrap; }
+
+.boton-reiniciar {
+  margin-top: 20px;
+  padding: 9px 16px;
+  border: 2px solid white;
+  border-radius: 20px;
+  background: transparent;
+  color: white;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.boton-reiniciar:hover { background: rgba(255, 255, 255, 0.15); }
+
+.seccion-progreso { margin-top: 22px; }
+
+.seccion-progreso h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: white;
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media (max-width: 600px) {
+  
+body {
+    padding: 12px;
+    background-attachment: scroll;
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    animation: moverFondo 35s ease-in-out infinite alternate;
+}
+
+
+    #btn-volver {
+        top: 20px;
+        left: 12px;
+        padding: 8px 14px;
+        font-size: 12px;
+    }
+
+    #encabezado {
+        padding: 75px 5px 15px;
+    }
+
+    #encabezado h1 {
+        font-size: 28px;
+        letter-spacing: 1px;
+    }
+
+    #encabezado p {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    #contenedorProgreso {
+        padding: 25px 0 35px;
+        width: 100%;
+    }
+
+    .tarjeta-progreso {
+        width: 100%;
+        max-width: 100%;
+        padding: 18px 14px;
+        border-radius: 18px;
+    }
+
+    .cabecera-estudiante {
+        gap: 14px;
+        margin-bottom: 20px;
+    }
+
+    .anillo {
+        width: 85px;
+        height: 85px;
+    }
+
+    .anillo span {
+        width: 65px;
+        height: 65px;
+        font-size: 18px;
+    }
+
+    .datos-estudiante {
+        min-width: 0;
+    }
+
+    .datos-estudiante h2 {
+        font-size: 19px;
+        overflow-wrap: anywhere;
+    }
+
+    .datos-estudiante p {
+        font-size: 12px;
+        overflow-wrap: anywhere;
+    }
+
+    .fila-nivel {
+        padding: 11px 10px;
+        gap: 8px;
+        font-size: 13px;
+    }
+
+    .fila-nivel small {
+        font-size: 11px;
+        line-height: 1.4;
+    }
+
+    .estado {
+        font-size: 11px;
+        white-space: normal;
+        text-align: right;
+    }
+
+    .boton-reiniciar {
+        max-width: 100%;
+        padding: 10px 14px;
+        font-size: 12px;
+    }
+
+    .seccion-progreso h3 {
+        font-size: 15px;
+    }
+}

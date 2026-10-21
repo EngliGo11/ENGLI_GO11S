@@ -57,6 +57,7 @@ const CONFIG = {
   duracionCaidaInicial: 9000,     // ms que tarda un meteorito en caer (más alto = más lento)
   duracionCaidaMinima: 4000,      // velocidad máxima (no cae más rápido que esto)
   reduccionPorAcierto: 150,       // cuánto se reduce la duración de caída por cada acierto
+  puntosParaGanar: 100,           // meta de puntos para mostrar la pantalla de "¡GANASTE!"
 };
  
 /* ---------------------------------------------------------
@@ -68,6 +69,8 @@ let estado = {
   meteoritosActivos: [],   // { id, palabra, elemento, timeoutCaida }
   duracionCaidaActual: CONFIG.duracionCaidaInicial,
   jugando: false,
+  pausado: false,
+  metaAlcanzada: false,
   timerAparicion: null,
   contadorId: 0,
 };
@@ -83,6 +86,9 @@ const pantallaFin = document.getElementById("pantalla-fin");
 const puntajeFinal = document.getElementById("puntaje-final");
 const btnReiniciar = document.getElementById("btn-reiniciar");
 const astronauta = document.getElementById("astronauta");
+const pantallaVictoria = document.getElementById("pantalla-victoria");
+const puntajeVictoria = document.getElementById("puntaje-victoria");
+const btnSeguirJugando = document.getElementById("btn-seguir-jugando");
  
 /* ---------------------------------------------------------
    5. INICIO / REINICIO DEL JUEGO
@@ -100,6 +106,8 @@ function iniciarJuego() {
     meteoritosActivos: [],
     duracionCaidaActual: CONFIG.duracionCaidaInicial,
     jugando: true,
+    pausado: false,
+    metaAlcanzada: false,
     timerAparicion: null,
     contadorId: 0,
   };
@@ -107,6 +115,7 @@ function iniciarJuego() {
   actualizarVidasHUD();
   actualizarPuntajeHUD();
   pantallaFin.classList.add("oculto");
+  pantallaVictoria.classList.add("oculto");
   inputRespuesta.value = "";
   inputRespuesta.disabled = false;
   inputRespuesta.focus();
@@ -125,7 +134,7 @@ btnReiniciar.addEventListener("click", iniciarJuego);
    aparezca CONFIG.tiempoEntreMeteoritos después.
 --------------------------------------------------------- */
 function programarSiguienteMeteorito() {
-  if (!estado.jugando) return;
+  if (!estado.jugando || estado.pausado) return;
  
   estado.timerAparicion = setTimeout(() => {
     crearMeteorito();
@@ -133,7 +142,7 @@ function programarSiguienteMeteorito() {
 }
  
 function crearMeteorito() {
-  if (!estado.jugando) return;
+  if (!estado.jugando || estado.pausado) return;
  
   const palabra = BANCO_PALABRAS[Math.floor(Math.random() * BANCO_PALABRAS.length)];
   const id = estado.contadorId++;
@@ -186,7 +195,7 @@ function crearMeteorito() {
    incorrecta y también resta una vida.
 --------------------------------------------------------- */
 inputRespuesta.addEventListener("input", () => {
-  if (!estado.jugando) return;
+  if (!estado.jugando || estado.pausado) return;
  
   const textoEscrito = normalizarTexto(inputRespuesta.value);
   if (textoEscrito.length === 0) return;
@@ -205,7 +214,7 @@ inputRespuesta.addEventListener("input", () => {
  
 inputRespuesta.addEventListener("keydown", (evento) => {
   if (evento.key !== "Enter") return;
-  if (!estado.jugando) return;
+  if (!estado.jugando || estado.pausado) return;
  
   const textoEscrito = normalizarTexto(inputRespuesta.value);
   if (textoEscrito.length === 0) return;
@@ -269,8 +278,81 @@ function acertarMeteorito(id) {
  
   setTimeout(() => meteorito.elemento.remove(), 400);
  
+  // ¿Llegó a la meta de puntos? Se muestra la pantalla de victoria
+  // (pausa el juego) en vez de programar el siguiente meteorito de una vez.
+  if (!estado.metaAlcanzada && estado.puntaje >= CONFIG.puntosParaGanar) {
+    estado.metaAlcanzada = true;
+    mostrarPantallaVictoria();
+    return;
+  }
+ 
   programarSiguienteMeteorito();
 }
+ 
+/* ---------------------------------------------------------
+   8B. PANTALLA DE VICTORIA (meta de puntos alcanzada)
+   Pausa el juego (el meteorito activo se congela donde esté)
+   y lo reanuda al presionar "Seguir jugando", sin penalizar
+   al estudiante por el tiempo que estuvo viendo el letrero.
+--------------------------------------------------------- */
+function mostrarPantallaVictoria() {
+  pausarJuego();
+  puntajeVictoria.textContent = estado.puntaje;
+  pantallaVictoria.classList.remove("oculto");
+}
+
+function pausarJuego() {
+  estado.pausado = true;
+  inputRespuesta.disabled = true;
+
+  clearTimeout(estado.timerAparicion);
+
+  const meteorito = estado.meteoritosActivos[0];
+  if (meteorito) {
+    clearTimeout(meteorito.timeoutCaida);
+
+    const rectMeteorito = meteorito.elemento.getBoundingClientRect();
+    const rectArea = areaJuego.getBoundingClientRect();
+    const topActual = rectMeteorito.top - rectArea.top;
+
+    meteorito.elemento.style.transition = "none";
+    meteorito.elemento.style.top = topActual + "px";
+    meteorito.topPausado = topActual;
+  }
+}
+
+function reanudarJuego() {
+  estado.pausado = false;
+  inputRespuesta.disabled = false;
+  inputRespuesta.focus();
+
+  const meteorito = estado.meteoritosActivos[0];
+
+  if (meteorito) {
+    const topFinal = areaJuego.clientHeight - 40;
+    const topInicial = -70;
+    const distanciaTotal = topFinal - topInicial;
+    const distanciaRestante = topFinal - meteorito.topPausado;
+    const proporcionRestante = Math.min(Math.max(distanciaRestante / distanciaTotal, 0.08), 1);
+    const tiempoRestante = Math.round(estado.duracionCaidaActual * proporcionRestante);
+
+    requestAnimationFrame(() => {
+      meteorito.elemento.style.transition = `top ${tiempoRestante}ms linear`;
+      meteorito.elemento.style.top = topFinal + "px";
+    });
+
+    meteorito.timeoutCaida = setTimeout(() => {
+      meteoritoLlegoAlLimite(meteorito.id);
+    }, tiempoRestante);
+  } else {
+    programarSiguienteMeteorito();
+  }
+}
+
+btnSeguirJugando.addEventListener("click", () => {
+  pantallaVictoria.classList.add("oculto");
+  reanudarJuego();
+});
  
 /* ---------------------------------------------------------
    9. METEORITO LLEGA AL LÍMITE SIN RESPUESTA CORRECTA

@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
 }
-
+ 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   width: 100vw;
@@ -12,7 +12,7 @@ body {
   background: #05020a;
   overflow: hidden;
 }
-
+ 
 /* Contenedor principal a pantalla completa */
 #juego {
   position: relative;
@@ -20,7 +20,7 @@ body {
   height: 100vh;
   overflow: hidden;
 }
-
+ 
 /* ---------------------------------------------------------
    FONDO CON MOVIMIENTO FLUIDO
 --------------------------------------------------------- */
@@ -33,7 +33,7 @@ body {
   z-index: 0;
   animation: animar-fondo 35s linear infinite alternate;
 }
-
+ 
 @keyframes animar-fondo {
   0% {
     transform: scale(1) translate(0, 0);
@@ -42,7 +42,7 @@ body {
     transform: scale(1.06) translate(-20px, -15px);
   }
 }
-
+ 
 /* ---------------------------------------------------------
    HUD / CONTENEDOR GENERAL
 --------------------------------------------------------- */
@@ -56,11 +56,11 @@ body {
   background: linear-gradient(to bottom, rgba(10, 5, 20, 0.75) 0%, transparent 100%);
   pointer-events: none;
 }
-
+ 
 #hud *, #btn-volver, #puntaje, #vidas {
   pointer-events: auto;
 }
-
+ 
 #btn-volver {
   position: absolute;
   top: 55px;
@@ -81,13 +81,13 @@ body {
   transition: all 0.2s ease;
   z-index: 10;
 }
-
+ 
 #btn-volver:hover {
   background: rgba(65, 39, 89, 0.95);
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(114, 34, 255, 0.5);
 }
-
+ 
 #puntaje {
   position: absolute;
   top: 35px; 
@@ -103,7 +103,7 @@ body {
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
   z-index: 10;
 }
-
+ 
 #vidas {
   position: absolute;
   top: 225px; 
@@ -119,16 +119,16 @@ body {
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
   z-index: 10;
 }
-
+ 
 #vidas .vida {
   color: #ff4d6d;
   text-shadow: 0 0 12px rgba(255, 77, 109, 0.9);
 }
-
+ 
 #vidas .vida-perdida {
   color: rgba(255, 255, 255, 0.25);
 }
-
+ 
 /* ---------------------------------------------------------
    AREA DE JUEGO
 --------------------------------------------------------- */
@@ -137,36 +137,38 @@ body {
   inset: 0;
   z-index: 1;
 }
-
+ 
 /* ---------------------------------------------------------
    ASTRONAUTA (La "cosa gris" que mencionabas)
 --------------------------------------------------------- */
 #astronauta {
-  position: absolute;
-  left: 60px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 5;
-  width: 90px;
-  height: 135px;
+    position: absolute;
+    left: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    width: 130px;
+    height: 275px;
 }
 
 #astronauta-sprite {
-  width: 100%;
-  height: 100%;
-  /* Si deseas quitarle el fondo gris y ponerle una imagen de personaje, 
-     puedes cambiar esta propiedad por background-image: url('../IMG/astronauta.png'); */
-  background: linear-gradient(135deg, #e4e4ed 0%, #b8b8c8 100%);
-  border-radius: 24px;
-  border: 2px solid #8f8fa8;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    background-image: url("../IMG/astronauta.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 #astronauta.disparando #astronauta-sprite {
-  background: linear-gradient(135deg, #ffe57f 0%, #ffb300 100%);
-  box-shadow: 0 0 20px rgba(255, 179, 0, 0.8);
+    background-image: url("../IMG/astronauta.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: drop-shadow(0 0 8px #ffb300)
+            drop-shadow(0 0 16px #ffb300);
 }
-
+ 
 /* ---------------------------------------------------------
    METEORITOS (¡AHORA SÍ, GIGANTES!)
 --------------------------------------------------------- */
@@ -177,7 +179,7 @@ body {
   align-items: center;
   z-index: 3;
 }
-
+ 
 .meteorito-cuerpo {
   width: 220px;  /* ¡Tamaño súper grande y dominante en pantalla! */
   height: 220px; /* ¡Tamaño súper grande y dominante en pantalla! */
@@ -188,7 +190,7 @@ body {
   border: none; 
   filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.9));
 }
-
+ 
 .meteorito-etiqueta {
   margin-top: 15px;
   background: rgba(20, 10, 40, 0.95);
@@ -201,12 +203,12 @@ body {
   border: 1px solid rgba(194, 155, 255, 0.6);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.7);
 }
-
+ 
 /* Meteorito acertado: explota en estrellas */
 .meteorito.acertado .meteorito-cuerpo {
   animation: explotar-estrellas 0.4s forwards;
 }
-
+ 
 @keyframes explotar-estrellas {
   to {
     transform: scale(1.6);
@@ -218,12 +220,12 @@ body {
       -55px 0 0 -2px #ffd76a;
   }
 }
-
+ 
 /* Meteorito fallado: fuego */
 .meteorito.fallado .meteorito-cuerpo {
   animation: explotar-fuego 0.4s forwards;
 }
-
+ 
 @keyframes explotar-fuego {
   to {
     transform: scale(1.6);
@@ -235,7 +237,7 @@ body {
       -55px 0 0 -4px #ff9e00;
   }
 }
-
+ 
 /* ---------------------------------------------------------
    CONTROLES (Campo de texto de traducción)
 --------------------------------------------------------- */
@@ -248,7 +250,7 @@ body {
   width: 55%;
   max-width: 650px;
 }
-
+ 
 #input-respuesta {
   width: 100%;
   padding: 16px 24px;
@@ -262,32 +264,33 @@ body {
   box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6);
   transition: all 0.3s ease;
 }
-
+ 
 #input-respuesta::placeholder {
   color: rgba(241, 230, 255, 0.45);
 }
-
+ 
 #input-respuesta:focus {
   border-color: #c29bff;
   box-shadow: 0 0 20px rgba(194, 155, 255, 0.6);
 }
-
+ 
 #input-respuesta.input-error {
   animation: sacudir-input 0.3s;
   border-color: #ff4d6d;
   box-shadow: 0 0 20px rgba(255, 77, 109, 0.8);
 }
-
+ 
 @keyframes sacudir-input {
   0%, 100% { transform: translateX(0); }
   25% { transform: translateX(-6px); }
   75% { transform: translateX(6px); }
 }
-
+ 
 /* ---------------------------------------------------------
-   PANTALLA DE FIN DE JUEGO
+   PANTALLA DE FIN DE JUEGO Y PANTALLA DE VICTORIA
 --------------------------------------------------------- */
-#pantalla-fin {
+#pantalla-fin,
+#pantalla-victoria {
   position: absolute;
   inset: 0;
   z-index: 20;
@@ -301,22 +304,24 @@ body {
   gap: 20px;
   text-align: center;
 }
-
-#pantalla-fin.oculto {
+ 
+#pantalla-fin.oculto,
+#pantalla-victoria.oculto {
   display: none;
 }
-
+ 
 #pantalla-fin h2 {
   font-size: 40px;
   color: #f1e6ff;
   text-shadow: 0 0 15px rgba(194, 155, 255, 0.6);
 }
-
-#pantalla-fin p {
+ 
+#pantalla-fin p,
+#pantalla-victoria p {
   font-size: 20px;
   color: rgba(241, 230, 255, 0.85);
 }
-
+ 
 #btn-reiniciar {
   padding: 16px 44px;
   border-radius: 35px;
@@ -330,13 +335,290 @@ body {
   transition: all 0.2s ease-in-out;
   margin-top: 10px;
 }
-
+ 
 #btn-reiniciar:hover {
   transform: translateY(-3px) scale(1.04);
   background: linear-gradient(135deg, #b272ff, #7322ff);
   box-shadow: 0 10px 30px rgba(114, 34, 255, 0.8);
 }
-
+ 
 #btn-reiniciar:active {
   transform: translateY(1px);
+}
+ 
+/* Pantalla de victoria: mismo estilo, con acento dorado para diferenciarla del game over */
+#pantalla-victoria h2 {
+  font-size: 44px;
+  color: #ffd76a;
+  text-shadow: 0 0 18px rgba(255, 215, 106, 0.7);
+}
+ 
+#btn-seguir-jugando {
+  padding: 16px 44px;
+  border-radius: 35px;
+  border: none;
+  background: linear-gradient(135deg, #ffe57f 0%, #ffb300 100%);
+  color: #2a1a00;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(255, 179, 0, 0.6);
+  transition: all 0.2s ease-in-out;
+  margin-top: 10px;
+}
+ 
+#btn-seguir-jugando:hover {
+  transform: translateY(-3px) scale(1.04);
+  background: linear-gradient(135deg, #ffed9e, #ffc233);
+  box-shadow: 0 10px 30px rgba(255, 179, 0, 0.8);
+}
+ 
+#btn-seguir-jugando:active {
+  transform: translateY(1px);
+}
+
+/* =========================================================
+   ADAPTABILIDAD PARA CELULARES
+========================================================= */
+
+@media (max-width: 768px) {
+
+    body {
+        width: 100%;
+        height: 100dvh;
+        min-height: 100dvh;
+        overflow: hidden;
+    }
+
+    #juego {
+        width: 100%;
+        height: 100dvh;
+        min-height: 100dvh;
+    }
+
+    /* =========================
+       FONDO
+    ========================= */
+
+    #fondo {
+        inset: -20px;
+        background-size: cover;
+        background-position: center;
+    }
+
+    /* =========================
+       HUD
+    ========================= */
+
+    #hud {
+        height: 100px;
+    }
+
+    #btn-volver {
+        top: 18px;
+        left: 15px;
+        padding: 9px 16px;
+        font-size: 14px;
+        border-radius: 22px;
+    }
+
+    #puntaje {
+        top: 18px;
+        right: 15px;
+        padding: 9px 14px;
+        font-size: 15px;
+        border-radius: 11px;
+    }
+
+    #vidas {
+        top: 85px;
+        left: 15px;
+        gap: 7px;
+        font-size: 21px;
+        padding: 7px 13px;
+        border-radius: 11px;
+    }
+
+    /* =========================
+       ASTRONAUTA
+    ========================= */
+
+    #astronauta {
+        left: 15px;
+        width: 85px;
+        height: 180px;
+    }
+
+    /* =========================
+       METEORITOS
+    ========================= */
+
+    .meteorito-cuerpo {
+        width: 125px;
+        height: 125px;
+    }
+
+    .meteorito-etiqueta {
+        margin-top: 7px;
+        padding: 7px 13px;
+        font-size: 14px;
+        border-radius: 10px;
+    }
+
+    /* =========================
+       CONTROLES
+    ========================= */
+
+    #controles {
+        bottom: 18px;
+        width: calc(100% - 30px);
+        max-width: none;
+    }
+
+    #input-respuesta {
+        padding: 13px 18px;
+        font-size: 16px;
+        border-radius: 24px;
+    }
+
+    /* =========================
+       PANTALLAS FINALES
+    ========================= */
+
+    #pantalla-fin,
+    #pantalla-victoria {
+        padding: 20px;
+        gap: 15px;
+    }
+
+    #pantalla-fin h2 {
+        font-size: 30px;
+    }
+
+    #pantalla-victoria h2 {
+        font-size: 32px;
+    }
+
+    #pantalla-fin p,
+    #pantalla-victoria p {
+        font-size: 16px;
+        line-height: 1.4;
+        max-width: 90%;
+    }
+
+    #btn-reiniciar,
+    #btn-seguir-jugando {
+        padding: 13px 30px;
+        font-size: 17px;
+    }
+}
+
+
+/* =========================================================
+   CELULARES PEQUEÑOS
+========================================================= */
+
+@media (max-width: 480px) {
+
+    body,
+    #juego {
+        width: 100%;
+        height: 100dvh;
+        min-height: 100dvh;
+    }
+
+    /* =========================
+       HUD
+    ========================= */
+
+    #btn-volver {
+        top: 12px;
+        left: 10px;
+        padding: 8px 13px;
+        font-size: 12px;
+    }
+
+    #puntaje {
+        top: 12px;
+        right: 10px;
+        padding: 8px 11px;
+        font-size: 13px;
+    }
+
+    #vidas {
+        top: 65px;
+        left: 10px;
+        padding: 6px 10px;
+        gap: 5px;
+        font-size: 18px;
+    }
+
+    /* =========================
+       ASTRONAUTA
+    ========================= */
+
+    #astronauta {
+        left: 8px;
+        width: 65px;
+        height: 145px;
+    }
+
+    /* =========================
+       METEORITOS
+    ========================= */
+
+    .meteorito-cuerpo {
+        width: 100px;
+        height: 100px;
+    }
+
+    .meteorito-etiqueta {
+        margin-top: 5px;
+        padding: 6px 10px;
+        font-size: 12px;
+        border-radius: 8px;
+    }
+
+    /* =========================
+       INPUT
+    ========================= */
+
+    #controles {
+        bottom: 12px;
+        width: calc(100% - 20px);
+    }
+
+    #input-respuesta {
+        padding: 12px 15px;
+        font-size: 15px;
+    }
+
+    /* =========================
+       PANTALLAS FINALES
+    ========================= */
+
+    #pantalla-fin,
+    #pantalla-victoria {
+        padding: 15px;
+    }
+
+    #pantalla-fin h2 {
+        font-size: 26px;
+    }
+
+    #pantalla-victoria h2 {
+        font-size: 28px;
+    }
+
+    #pantalla-fin p,
+    #pantalla-victoria p {
+        font-size: 14px;
+        max-width: 95%;
+    }
+
+    #btn-reiniciar,
+    #btn-seguir-jugando {
+        padding: 12px 25px;
+        font-size: 15px;
+    }
 }

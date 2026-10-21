@@ -1,8 +1,8 @@
 const temas = [
   
-   {nombre: "Meteor challege",icono: "IMG/meteorchallege.png",esImagen: true, color: "#7c5cff", pagina: "Meteorchallege.html"},
-   {nombre: "Complete the word",icono: "IMG/planetmatch.png",esImagen: true, color: "#3ea6ff",pagina: "words.html"},
-   {nombre: "Word Search", icono: "IMG/sopa.png", esImagen: true, color: "#3ecf8e",pagina: "Wordsearch.html"}, 
+   {nombre: "Meteor challege",icono: "IMG/meteorchallenge.png",esImagen: true, color: "#2f2d9e", pagina: "Meteorchallege.html"},
+   {nombre: "Complete the word",icono: "IMG/word.png",esImagen: true, color: "#aa5bff",pagina: "words.html"},
+   {nombre: "Word Search", icono: "IMG/sopa.png", esImagen: true, color: "#5ba5ff",pagina: "Wordsearch.html"}, 
 ];
  
  
@@ -20,10 +20,6 @@ temas.forEach((tema) => {
  
   tarjeta.innerHTML = `
     <div class="ilustracion">${contenidoIlustracion}</div>
-    <div class="pie-tarjeta">
-      <div class="nombre-tema">${tema.nombre}</div>
-      <div class="boton-ir">&#8594;</div>
-    </div>
   `;
  
   tarjeta.addEventListener("click", () => {

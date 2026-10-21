@@ -596,99 +596,331 @@ body {
     box-shadow: 0 0 18px #302d5d, 0 0 35px rgba(108, 99, 255, 0.5);
 }
 
-/* RESPONSIVE */
 
-@media (max-width: 800px) {
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 767px) {
+
+    body {
+        min-height: 100vh;
+        background-size: cover;
+        background-position: center;
+        background-attachment: scroll;
+        animation: none;
+        overflow-x: hidden;
+    }
+
     .about-container {
         width: 100%;
+        max-width: 100%;
         margin-left: 0;
-        padding: 35px 20px 60px;
+        padding: 35px 15px 50px;
     }
+
+    /* ENCABEZADO */
+
+    .about-header {
+        margin-bottom: 35px;
+    }
+
+    .badge-tag {
+        padding: 6px 13px;
+        font-size: 0.72rem;
+        letter-spacing: 0.7px;
+    }
+
+    .about-header h2 {
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+
+    .about-header .subtitle {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .section-label {
+        font-size: 0.75rem;
+    }
+
+    /* PROYECTO */
 
     .project-section {
         grid-template-columns: 1fr;
-        gap: 20px;
-        padding: 30px 25px;
-        text-align: center;
-    }
-
-    .project-visual {
-        min-height: 180px;
-    }
-
-    .planet {
-        font-size: 6rem;
-    }
-
-    .mission-card,
-    .vision-card {
-        width: 100%;
-        margin-right: 0;
-    }
-
-    .features-grid,
-    .sdg-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .story-section {
-        padding: 30px 20px;
-    }
-
-    .credits-card {
-        padding: 35px 25px;
-    }
-
-    .credits-card h2 {
-        font-size: 32px;
-    }
-
-    .credits-info {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .credit-item {
-        width: 100%;
-        max-width: 350px;
-    }
-}
-
-@media (max-width: 600px) {
-    .about-header h2 {
-        font-size: 2.1rem;
+        gap: 25px;
+        padding: 25px 20px;
+        margin-bottom: 30px;
+        border-radius: 20px;
     }
 
     .project-content h2 {
-        font-size: 1.9rem;
+        font-size: 1.8rem;
+        line-height: 1.2;
+        margin-bottom: 15px;
+    }
+
+    .project-content p {
+        font-size: 0.9rem;
+        line-height: 1.7;
+    }
+
+    .planeta {
+        display: block;
+        width: min(180px, 75%);
+        max-width: 100%;
+        margin: 0 auto;
+        left: 0;
+    }
+
+    /* MISIÓN Y VISIÓN */
+
+    .mission-card,
+    .vision-card {
+        display: block;
+        width: 100%;
+        min-height: auto;
+        margin: 0 0 20px;
+    }
+
+    .glass-card {
+        padding: 25px 20px;
+        border-radius: 18px;
+    }
+
+    .card-icon {
+        font-size: 2rem;
+    }
+
+    .glass-card h3 {
+        font-size: 1.2rem;
+    }
+
+    .glass-card p {
+        font-size: 0.9rem;
+        line-height: 1.65;
+    }
+
+    /* CARACTERÍSTICAS */
+
+    .features-section,
+    .story-section {
+        margin-bottom: 35px;
+        border-radius: 18px;
+    }
+
+    .features-section {
+        padding: 25px 15px;
+    }
+
+    .section-title {
+        margin-bottom: 22px;
+        font-size: 1.45rem;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .feature-item {
+        padding: 22px 18px;
+    }
+
+    .feature-item h4 {
+        font-size: 1rem;
+    }
+
+    .feature-item p {
+        font-size: 0.88rem;
+    }
+
+    /* HISTORIA */
+
+    .story-section {
+        padding: 25px 15px;
+    }
+
+    .story-header {
+        margin-bottom: 30px;
     }
 
     .story-header h2,
     .sdg-header h2 {
-        font-size: 1.7rem;
+        font-size: 1.65rem;
+        line-height: 1.3;
     }
 
-    .story-item {
-        gap: 15px;
+    .story-header p,
+    .sdg-header p {
+        font-size: 0.9rem;
+        line-height: 1.6;
     }
 
-    .story-icon {
-        width: 50px;
-        height: 50px;
-        font-size: 1.4rem;
+    .story-timeline {
+        gap: 18px;
     }
 
     .story-timeline::before {
-        left: 24px;
+        left: 21px;
+    }
+
+    .story-item {
+        gap: 12px;
+    }
+
+    .story-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 1.25rem;
     }
 
     .story-content {
-        padding: 18px;
+        min-width: 0;
+        padding: 17px 14px;
+        border-radius: 15px;
     }
 
-    .features-section,
-    .sdg-card,
-    .social-box {
+    .story-number {
+        font-size: 0.72rem;
+    }
+
+    .story-content h3 {
+        font-size: 1.05rem;
+        line-height: 1.4;
+    }
+
+    .story-content p,
+    .sdg-card p {
+        font-size: 0.85rem;
+        line-height: 1.6;
+        overflow-wrap: anywhere;
+    }
+
+    /* OBJETIVOS DE DESARROLLO SOSTENIBLE */
+
+    .sdg-section {
+        margin-bottom: 35px;
+    }
+
+    .sdg-header {
+        margin-bottom: 25px;
+    }
+
+    .sdg-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .sdg-card {
         padding: 25px 20px;
+        border-radius: 18px;
+    }
+
+    .sdg-icon {
+        font-size: 2.2rem;
+    }
+
+    .sdg-number {
+        font-size: 0.78rem;
+    }
+
+    .sdg-card h3 {
+        font-size: 1.15rem;
+        line-height: 1.4;
+    }
+
+    /* REDES SOCIALES */
+
+    .social-box {
+        padding: 28px 18px;
+        border-radius: 18px;
+    }
+
+    .social-box h3 {
+        font-size: 1.2rem;
+        line-height: 1.4;
+    }
+
+    .social-box p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    .social-links {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .social-btn {
+        justify-content: center;
+        width: 100%;
+        padding: 12px 18px;
+        font-size: 0.9rem;
+    }
+
+    /* CRÉDITOS DEL EQUIPO */
+
+    .credits-section {
+        margin: 40px 0;
+        padding: 0;
+    }
+
+    .credits-card {
+        width: 100%;
+        max-width: 100%;
+        padding: 30px 18px;
+        border-radius: 22px;
+    }
+
+    .credits-icon {
+        font-size: 32px;
+    }
+
+    .credits-card h2 {
+        font-size: 1.8rem;
+        line-height: 1.3;
+    }
+
+    .credits-text {
+        margin-bottom: 28px;
+        font-size: 0.9rem;
+        line-height: 1.7;
+    }
+
+    .credits-info {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 18px;
+    }
+
+    .credit-item {
+        flex: none;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        padding: 24px 15px;
+        border-radius: 18px;
+    }
+
+    .credit-item > span {
+        font-size: 28px;
+    }
+
+    .credit-item h3 {
+        font-size: 1.05rem;
+        overflow-wrap: anywhere;
+    }
+
+    .credit-item p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .credit-item img {
+        width: 105px;
+        height: 105px;
     }
 }

@@ -1,6 +1,6 @@
 // Array de rutas a imágenes locales (relativas a la ubicación de index.html)
 const imagenes = [
-    "IMG/astro.jpg",
+    "IMG/astro.png",
     "IMG/bloop.jpg",
     "IMG/zeb.png"
   ];

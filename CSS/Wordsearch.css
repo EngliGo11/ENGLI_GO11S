@@ -12,29 +12,27 @@ body {
   justify-content: flex-start;
   min-height: 100vh;
   padding: 50px 20px 15px;
-}
-  
-#fondo {
-  position: fixed;
-  inset: -50px;
-  z-index: -1;
   background-image: url('../IMG/fondosopa.png');
-  background-size: cover;
+  background-size: 105% 105%;
   background-position: center;
   background-repeat: no-repeat;
   animation: moverFondo 35s ease-in-out infinite alternate;
-  pointer-events: none; 
 }
-  
+
 @keyframes moverFondo {
   0% {
-    transform: scale(1) translate(0, 0);
+    background-position: center center;
+    background-size: 100% 100%;
   }
+
   50% {
-    transform: scale(1.06) translate(-15px, -10px);
+    background-position: 48% 47%;
+    background-size: 106% 106%;
   }
+
   100% {
-    transform: scale(1) translate(0, 0);
+    background-position: center center;
+    background-size: 100% 100%;
   }
 }
 
@@ -252,4 +250,192 @@ body {
 
 .oculto {
   display: none !important;
+}
+
+/* =========================================================
+   ADAPTABILIDAD PARA CELULARES
+========================================================= */
+
+@media (max-width: 768px) {
+
+    body {
+        padding: 25px 12px 20px;
+        overflow-x: hidden;
+        background-size: cover;
+        background-position: center;
+    }
+
+    /* BOTÓN VOLVER */
+    #btn-volver {
+        position: relative;
+        top: auto;
+        left: auto;
+        align-self: flex-start;
+        margin: 0 0 20px 5px;
+        font-size: 13px;
+        padding: 8px 16px;
+    }
+
+    /* ENCABEZADO */
+    #encabezado-juego {
+        position: relative;
+        left: 0;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    #encabezado-juego h1 {
+        font-size: 26px;
+        letter-spacing: 2px;
+    }
+
+    #encabezado-juego p {
+        font-size: 13px;
+        padding: 0 10px;
+    }
+
+    /* CONTENIDO */
+    #contenido-juego {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    /* SOPA DE LETRAS */
+    #cuadricula {
+        width: min(94vw, 500px);
+        padding: 10px;
+        gap: 3px;
+        border-radius: 18px;
+    }
+
+    .celda {
+        font-size: clamp(10px, 3.5vw, 16px);
+        border-radius: 4px;
+    }
+
+    /* PANEL LATERAL */
+    #panel-lateral {
+        width: min(94vw, 500px);
+        padding: 15px;
+        border-radius: 18px;
+    }
+
+    #panel-lateral h2 {
+        font-size: 13px;
+        padding: 7px 10px;
+    }
+
+    #lista-palabras {
+        gap: 6px;
+        margin-bottom: 14px;
+    }
+
+    #lista-palabras li {
+        font-size: 11px;
+        padding: 6px;
+    }
+
+    #btn-nueva-sopa {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    /* PANTALLA DE VICTORIA */
+    #pantalla-victoria {
+        padding: 20px;
+    }
+
+    #btn-jugar-otra-vez {
+        padding: 11px 24px;
+        font-size: 14px;
+    }
+}
+
+/* =========================================================
+   CELULARES PEQUEÑOS
+========================================================= */
+
+@media (max-width: 480px) {
+
+    body {
+        padding: 18px 8px 15px;
+    }
+
+    #btn-volver {
+        margin-bottom: 15px;
+        font-size: 12px;
+        padding: 7px 13px;
+    }
+
+    #encabezado-juego {
+        margin-bottom: 15px;
+    }
+
+    #encabezado-juego h1 {
+        font-size: 22px;
+        letter-spacing: 1px;
+    }
+
+    #encabezado-juego p {
+        font-size: 12px;
+    }
+
+    #cuadricula {
+        width: 96vw;
+        padding: 7px;
+        gap: 2px;
+        border-radius: 15px;
+    }
+
+    .celda {
+        font-size: clamp(9px, 3.7vw, 14px);
+        border-radius: 3px;
+    }
+
+    #panel-lateral {
+        width: 96vw;
+        padding: 12px;
+        border-radius: 16px;
+    }
+
+    #lista-palabras {
+        gap: 5px;
+    }
+
+    #lista-palabras li {
+        font-size: 10px;
+        padding: 5px;
+    }
+}
+
+
+/* =========================================================
+   CELULARES MUY PEQUEÑOS
+========================================================= */
+
+@media (max-width: 360px) {
+
+    #encabezado-juego h1 {
+        font-size: 20px;
+    }
+
+    #cuadricula {
+        width: 97vw;
+        padding: 5px;
+    }
+
+    .celda {
+        font-size: 9px;
+    }
+
+    #panel-lateral {
+        width: 97vw;
+    }
+
+    #lista-palabras li {
+        font-size: 9px;
+        padding: 4px;
+    }
 }

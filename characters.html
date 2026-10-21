@@ -18,6 +18,10 @@
     <audio id="audioMenu" preload="auto">
         <source src="audio/hover.mp3" type="audio/mpeg" />
     </audio>
+
+    <input type="checkbox" id="menu-check" class="menu-check">
+    <label for="menu-check" class="menu-toggle">☰</label>
+    <label for="menu-check" class="menu-overlay"></label>
     
     <!-- MENÚ -->
      
@@ -31,19 +35,19 @@
         <nav>
             <ul>
                 <li><a href="index.html" class="menu-link">Home</a></li>
+                <li><a href="Activity.html" class="menu-link">Learning resources</a></li>
+                <li><a href="Games.html" class="menu-link">Games</a></li>
                 <li><a href="characters.html" class="menu-link">Characters</a></li>
                 <li><a href="sobrenosotros.html" class="menu-link">About us</a></li>
                 <li><a href="help.html" class="menu-link">Help</a></li>
-                <li><a href="Activity.html" class="menu-link">Learning resources</a></li>
-                <li><a href="Games.html" class="menu-link">Games</a></li>
             </ul>
         </nav>
     </aside>
 
     <!-- Carrusel -->
 
-    <h1>Characters</h1>
-    <h2>✦Click on an image to explore ✦</h2>
+    <h1 class="personajes">Characters</h1>
+    <h2 class="personajes">✦Click on an image to explore ✦</h2>
 
   <!-- Contenedor del carrusel -->
 
@@ -66,7 +70,7 @@
 
     <div class="contenido-info">
         <button class="cerrar" onclick="cerrarInfo('AstroInfo')">✕</button>
-        <img src="IMG/astro.jpg" alt="Astro">
+        <img src="IMG/astro.png" alt="Astro">
         <h2>Astro</h2>
         <p>
             Astro is the signature character representing the child in their
@@ -86,7 +90,7 @@
         <button class="cerrar" onclick="cerrarInfo('BloopInfo')">✕</button>
         <img src="IMG/bloop.jpg" alt="Bloop">
         <h2>Bloop</h2>
-        <p>Bloop is the EngliGo’s space-themed mascot and a faithful companion to 
+        <p>Bloop is the EngliGo’s mascot and a faithful companion to 
            children on their cosmic adventure as they learn English; chosen for 
            his charismatic nature and language-related theme, he connects with students
            in a natural, fun way, fulfilling the fundamental role of orienting, guiding, 
@@ -101,9 +105,8 @@
         <button class="cerrar" onclick="cerrarInfo('ZebInfo')">✕</button>
         <img src="IMG/zeb.png" alt="Bloop">
         <h2>Zeb</h2>
-        <p>Zeb acts as a friendly guide within the progress section.
-           His main purpose is to accompany children throughout their learning journey. He is responsible
-           for showing their progress and celebrating every completed lesson.</p>
+        <p>Zeb acts as a guide in the progress section. Its main objective is
+           to indicate the progress of each lesson, handling the display of that progress.</p>
     </div>
 
     </div>

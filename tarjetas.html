@@ -17,6 +17,10 @@
     <audio id="audioMenu" preload="auto">
         <source src="audio/hover.mp3" type="audio/mpeg" />
     </audio>
+
+    <input type="checkbox" id="menu-check" class="menu-check">
+    <label for="menu-check" class="menu-toggle">☰</label>
+    <label for="menu-check" class="menu-overlay"></label>
     
     <!-- MENÚ -->
      
@@ -30,11 +34,11 @@
         <nav>
             <ul>
                 <li><a href="index.html" class="menu-link">Home</a></li>
+                <li><a href="Activity.html" class="menu-link">Learning resources</a></li>
+                <li><a href="Games.html" class="menu-link">Games</a></li>
                 <li><a href="characters.html" class="menu-link">Characters</a></li>
                 <li><a href="sobrenosotros.html" class="menu-link">About us</a></li>
                 <li><a href="help.html" class="menu-link">Help</a></li>
-                <li><a href="Activity.html" class="menu-link">Learning resources</a></li>
-                <li><a href="Games.html" class="menu-link">Games</a></li>
             </ul>
         </nav>
     </aside>
@@ -58,16 +62,16 @@
             </article>
 
             <article class="card">
+                    <a href="Astraltravel.html" class="Lessons">
                     <img src="IMG/lessons.png" alt="Lessons">
+                    </a>
             </article>
 
             <article class="card">
+                    <a href="progreso.html" class="progreso">
                     <img src="IMG/progress.png" alt="Progress">
+                    </a>
             </article>
-
-                <script src="JavaScript/script.js"></script>
-
-
         </div>
     </section>
 
@@ -99,8 +103,6 @@
 
      <!-- JavaScript para audio -->
     <script> const audioMenu = document.getElementById('audioMenu'); document.querySelectorAll('.menu-link').forEach(link => { link.addEventListener('mouseenter', () => { audioMenu.currentTime = 0; audioMenu.volume = 0.4; audioMenu.play(); }); }); </script>
-
-
 
 </body>
 </html>

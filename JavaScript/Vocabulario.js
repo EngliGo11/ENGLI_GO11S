@@ -1,10 +1,10 @@
 const temas = [
   
-  { nombre: "Greetings and farewells", icono: "IMG/saludo-despedida.png", esImagen: true, color: "#5c9dff", pagina: "saludos.html" },
-  { nombre: "Classroom Objects", icono:"IMG/objetos 1.png", esImagen: true, color: "#3ea6ff", pagina: "objetos.html" },
-  { nombre: "Animals", icono: "IMG/animales 1.png", esImagen: true, color: "#576ee1", pagina: "animales.html" },
-  { nombre: "Colors", icono: "IMG/colores 1.png", esImagen: true, color: "#6ed6ff", pagina: "colores.html" },
-  { nombre: "Body", icono: "IMG/cuerpo.png", esImagen: true, color: "#4db2ff", pagina: "partes-cuerpo.html" }
+  { nombre: "Greetings and farewells", icono: "IMG/saludo-despedida.png", esImagen: true, color: "#413ac7", pagina: "saludos.html" },
+  { nombre: "Classroom Objects", icono:"IMG/objetos 1.png", esImagen: true, color: "#ff7ef4", pagina: "objetos.html" },
+  { nombre: "Animals", icono: "IMG/animales 1.png", esImagen: true, color: "#70f7ad", pagina: "animales.html" },
+  { nombre: "Colors", icono: "IMG/colores 1.png", esImagen: true, color: "#f46262", pagina: "colores.html" },
+  { nombre: "Body", icono: "IMG/cuerpo.png", esImagen: true, color: "#edff4d", pagina: "partes-cuerpo.html" }
 ];
  
  
@@ -23,10 +23,6 @@ temas.forEach((tema) => {
  
   tarjeta.innerHTML = `
     <div class="ilustracion">${contenidoIlustracion}</div>
-    <div class="pie-tarjeta">
-      <div class="nombre-tema">${tema.nombre}</div>
-      <div class="boton-ir">&#8594;</div>
-    </div>
   `;
  
   tarjeta.addEventListener("click", () => {

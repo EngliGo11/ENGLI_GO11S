@@ -12,13 +12,11 @@
     font-style: normal;
 }
 
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
 
 /* ==========================
    MENU
@@ -33,7 +31,6 @@ aside {
     background-color: rgba(79, 128, 245, 0.3);
     backdrop-filter: blur(8px);
 }
-
 
 aside ul {
     list-style: none;
@@ -50,19 +47,16 @@ aside a{
     transition: all 0.4s ease;
 }
 
-
 aside a:hover {
     background-color: white;
     color: #3A3FA9;
     padding-left: 20px;
 }
 
-
 aside a.active {
     background-color: white;
     color: #3A3FA9;
 }
-
 
 aside div {
     display: flex;
@@ -71,16 +65,13 @@ aside div {
     margin-bottom: 30px;
 }
 
-
 aside h2 {
     margin-left: -20px;
 }
 
-
 aside li {
     margin: 20px 0;
 }
-
 
 /* ==========================
    LOGO
@@ -93,14 +84,12 @@ aside li {
     padding: 20px 15px;
 }
 
-
 .brand-logo img {
     width: 99px;
     height: 99px;
     object-fit: contain;
     filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));
 }
-
 
 .brand-logo h2 {
     margin: 0;
@@ -113,4 +102,78 @@ aside li {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     filter: drop-shadow(0 0 10px rgba(79, 128, 245, 0.8));
+}
+
+/* ==========================
+   RESPONSIVE 
+========================== */
+
+.menu-check,
+.menu-toggle,
+.menu-overlay {
+    display: none;
+}
+ 
+@media (max-width: 768px) {
+
+    .menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 12px;
+        left: 12px;
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        background-color: rgb(30, 49, 93);
+        color: rgb(255, 255, 255);
+        font-size: 1.5rem;
+        cursor: pointer;
+        z-index: 1100;
+    }
+
+    .menu-check:checked ~ .menu-toggle {
+        left: auto;
+        right: 12px;
+    }
+
+    aside {
+        height: 100dvh;
+        max-width: 80vw;
+        overflow-y: auto;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 1050;
+    }
+
+    .menu-check:checked ~ aside {
+        transform: translateX(0);
+    }
+
+    .menu-overlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        z-index: 1040;
+    }
+
+    .menu-check:checked ~ .menu-overlay {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    aside a:hover {
+        padding-left: 12px;
+    }
+
+    main {
+        margin-left: 0;
+        width: 100%;
+        padding-top: 70px;
+    }
 }
